@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker { image 'node:7-alpine' }
-    }
+    agent any
     environment {
         PROJECT_ID = 'olivealex'
         CLUSTER_NAME = 'test-cluster'
@@ -15,7 +13,9 @@ pipeline {
             }
         }
         stage("Build image") {
-           
+           agent {
+                docker { image 'node:7-alpine' }
+            }
             steps {
                 script {
                     myapp = docker.build("gcr.io/olivealex/express-web:latest")
