@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'node:7-alpine' }
+    }
     environment {
         PROJECT_ID = 'olivealex'
         CLUSTER_NAME = 'test-cluster'
