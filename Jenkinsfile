@@ -13,9 +13,6 @@ pipeline {
             }
         }
         stage("Build image") {
-           agent {
-                docker { image 'node:7-alpine' }
-            }
             steps {
                 script {
                     myapp = docker.build("gcr.io/olivealex/express-web:latest")
@@ -23,7 +20,6 @@ pipeline {
             }
         }
         stage("Push image") {
-         
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
